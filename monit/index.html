@@ -1,0 +1,1098 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../dataaccess/">
+      
+      
+        <link rel="next" href="../visualisation/">
+      
+      
+      <link rel="icon" href="../graphics/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.27">
+    
+    
+      
+        <title>Monitoring - TorQ</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","UA-51911331-4"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","UA-51911331-4",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=UA-51911331-4",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="grey">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#monitoring-torq" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="TorQ" class="md-header__button md-logo" aria-label="TorQ" data-md-component="logo">
+      
+  <img src="../graphics/DataIntellect-header-logo.jpg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            TorQ
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Monitoring
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="grey"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DataIntellectTech/TorQ" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="TorQ" class="md-nav__button md-logo" aria-label="TorQ" data-md-component="logo">
+      
+  <img src="../graphics/DataIntellect-header-logo.jpg" alt="logo">
+
+    </a>
+    TorQ
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DataIntellectTech/TorQ" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cheatsheet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cheat Sheat
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gettingstarted/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../InstallGuide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../utilities/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Utilities
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../handlers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Handlers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../conn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Connection Management
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Processes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Processes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../analyticslib/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Analytics Library
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dataaccess/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Data Access Library
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Monitoring
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Monitoring
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#monit" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monit
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monit">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Features
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage Guide
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#datadog" class="md-nav__link">
+    <span class="md-ellipsis">
+      Datadog
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Datadog">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#features_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Features
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage-guide_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage Guide
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-the-datadog-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using the Datadog UI
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monitoring-multiple-hosts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoring Multiple Hosts
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../visualisation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Visualisation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unittesting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Testing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../blog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TorQ Blog Posts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#monit" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monit
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monit">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Features
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage Guide
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#datadog" class="md-nav__link">
+    <span class="md-ellipsis">
+      Datadog
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Datadog">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#features_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Features
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage-guide_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage Guide
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-the-datadog-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using the Datadog UI
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monitoring-multiple-hosts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoring Multiple Hosts
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="monitoring-torq">Monitoring TorQ</h1>
+<p>There are lots of standard tools available to monitor a TorQ stack. It can be easily integrated with incumbent monitoring systems. We have outlined how to use two of our preferred options below- Monit and Datadog. Some of their features overlap and some are complementary. </p>
+<h2 id="monit">Monit</h2>
+<p><strong>Monit</strong> is a small open source utility for monitoring and managing UNIX systems. Monit's ease of use makes it the perfect tool for tracking the status of TorQ processes.</p>
+<h3 id="installation">Installation</h3>
+<p>Monit is included in most Unix distributions but can also be downloaded from <a href="https://mmonit.com/monit/#download">here</a>. This monit addition to TorQ allows the monit config files to be easily generated, based on the contents of the process.csv file. </p>
+<p>The basic monit directory which has been added to TorQ can be seen below: </p>
+<pre><code>${TORQHOME}
+|---monit
+    |---bin
+    |   |---monit.sh 
+    |---templates 
+        |---monitalert.cfg
+        |---monitrc
+        |---monittemplate.txt
+</code></pre>
+<p>It is important to mention that Data Intellect will not offer support for <strong>monitalert.cfg</strong> and <strong>monitrc</strong>. Those two files have been added as an example on how <strong>monit</strong> can be configured to monitor your system and to offer an out-of-the-box configuration that you can use to test that <strong>monit</strong> works.  If the monit installation contains an updated version of monitrc, this should be used instead. </p>
+<h3 id="features">Features</h3>
+<p>Monit is only available for UNIX and it comes with a bash script that you can use to generate the configuration and start the processes. More details on how you use this script can be found below. </p>
+<p>We have also included a standard <strong>monitrc</strong> which will: </p>
+<ul>
+<li>Set the check interval to 30 seconds </li>
+<li>Set the location of the <strong>monit.log</strong> file </li>
+<li>Set the location of <strong>monit.state</strong> fsile </li>
+<li>Define the <strong>mail alert</strong> basic configuration </li>
+<li>Define the <strong>e-mail format</strong></li>
+<li>Set the <strong>interface port</strong> (11000) <strong>user</strong> and <strong>password</strong></li>
+<li>Set the location of the <strong>*.cfg</strong> files </li>
+</ul>
+<p>The <strong>monitalert.cfg</strong> it is only an example on how you can configure your own alerts for monitoring your UNIX system. There are no TorQ specific examples in this file. </p>
+<p>The only file which will be updated with future TorQ releases is the <strong>monittemplate.txt</strong> which generates the <strong>monitconfig.cfg</strong>. An example is included below: </p>
+<pre><code>check process tickerplant1
+  matching &quot;15000 -proctype tickerplant -procname tickerplant1&quot;
+    start program = &quot;/bin/bash -c '/home/USER/torqprodsupp/torqdev/deploy/torq.sh start tickerplant1'&quot;
+      with timeout 10 seconds
+    stop program = &quot;/bin/bash -c '/home/USER/torqprodsupp/torqdev/deploy/torq.sh stop tickerplant1'&quot;
+    every &quot;* * * * *&quot;
+    mode active
+</code></pre>
+<h3 id="usage-guide">Usage Guide</h3>
+<p>If you want to use <strong>monit</strong> to monitor your UNIX system and TorQ processes you must first generate the configuration files and then start <strong>monit</strong>. We will assume that you start with a fresh copy of TorQ. </p>
+<ol>
+<li>Install TorQ and the any optional customisations (e.g. the TorQ Finanace Starter Pack)</li>
+<li>Navigate to <strong>${TORQHOME}/monit/bin/</strong></li>
+<li>Execute:  </li>
+<li>bash monit.sh generate all - to generate all the config files </li>
+<li>bash monit.sh generate alert - to generate the alert configuration file</li>
+<li>bash monit.sh generate monitconfig - to generate the monitconfig.cfg </li>
+<li>bash monit.sh generate monitrc - to generate the monitrc file </li>
+</ol>
+<p>However, you can also use your own configuration files by either creating a new directory in monit called <strong>config</strong> and moving all the <em>.cfg files and the </em><em>monitrc</em><em> file in there or by modifying the last line in the monitrc to point to the folder where the </em>.cfg files can be found. </p>
+<ol>
+<li>Start monit by executing bash monit.sh start </li>
+</ol>
+<p>The start function also take a parameter <strong>("string")</strong> whch can specify the location of the <strong>monitrc</strong>.</p>
+<h2 id="datadog">Datadog</h2>
+<p>Datadog is a monitoring service for cloud-scale applications, providing
+monitoring of servers, databases, tools, and services, through a SaaS-based data
+analytics platform. This documentation provides a guideline on how to integrate TorQ and Datadog on
+a Linux host.</p>
+<div style="width:640px; height:360px; margin: 0 auto;">
+<iframe src="https://player.vimeo.com/video/378822571" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+</div>
+
+<p></br></p>
+<p><strong>Note:</strong> The Datadog Agent used in this integration is version 7, and may not be backwards or forwards compatible with other versions. See the Datadog documentation for more detail. </p>
+<h3 id="installation_1">Installation</h3>
+<p>Please Note: At this time the integration of Datadog with TorQ is supported on a unix host. We have not yet provided instructions or functionality for the use of Datadog with TorQ on other operating systems.</p>
+<p>The Datadog Agent is software that runs on your host, collecting events and metrics from the host and sending them to Datadog, where you can analyze your monitoring and performance data. We have provided the functionality to monitor system metrics such as CPU and memory usage, report process errors to Datadog, perform data checks and visualise the results on a custom dashboard. The datadog agent can be installed <a href="https://www.datadoghq.com/">here</a>. Note that there are multiple price plans for Datadog, and the functionality available to you is dependent on your plan. </p>
+<p>A 14-day free trial is available, on which all the monitoring provided within this integration will work. </p>
+<p>Once you've set up an account with datadog, more information on getting started can be found <a href="https://docs.datadoghq.com/getting_started/agent/">here</a>. 
+An easy one-step install is provided as shown in the video above.</p>
+<p>Code is provided within TorQ to enable the integration of Datadog with a TorQ stack on a unix host. The directory layout of the relevant code is as shown below:</p>
+<pre><code>${TORQHOME}
+|---datadog
+    |---Example_TorQ_Monitoring_Dashboard.json
+    |---monitors
+    |---setupdatadog.sh
+</code></pre>
+<pre><code>${TORQHOME}
+|---code
+    |---common
+    |   |---datadog.q
+    |---monitor
+        |---datadogchecks.q
+</code></pre>
+<p>The <code>setupdatadog.sh</code> script is provided as a quick-start install to set up datadog on your host. It edits the config files required by datadog: </p>
+<ul>
+<li>Datadog.yaml, which contains the port number to listen on, and enables the agent to receive metrics and events from processes. </li>
+<li>Process.yaml, which determines which processes datadog will retrieve CPU and memory stats for. This file is generated using the process.csv, and by default all processes will be monitored. If you wish to monitor only certain processes, a "datadog" column can be added to the process.csv, and a value of 1 or 0 added to each of the processes (1 meaning monitored, 0 meaning not monitored).</li>
+</ul>
+<h3 id="features_1">Features</h3>
+<p><img alt="Simple Datadog Integration" src="../graphics/datadog1.png" /></p>
+<ul>
+<li>Send Metrics and Events</li>
+</ul>
+<p><a href="https://docs.datadoghq.com/metrics/">Metrics</a> are values sent from the system to quickly indicate the state of a process or the system itself. We have provided the functionality to send metrics from TorQ processes to the datadog agent, via the <code>.dg.sendmetric</code> function. </p>
+<pre><code>q) .dg.sendmetric[&quot;metric_name&quot;;metric_value]
+
+</code></pre>
+<p>The default configuration generated by <code>setupdatadog.sh</code> also automates the sending of process stats as metrics, using the process.yaml as a template for which processes to monitor. </p>
+<p><a href="https://docs.datadoghq.com/events/">Events</a> are sent in a similar way to Metrics, but indicate a noteworthy record of
+activity</p>
+<p>We can send an event from a TorQ process using the .dg.sendevent function:</p>
+<pre><code>.dg.sendevent[event_title;event_text;tags;alert_type]
+</code></pre>
+<p>This expects string arguments, and can accept any number of custom tags, and an
+alert type one of "error", "warning" or "success".</p>
+<ul>
+<li>Send Process Errors To Datadog</li>
+</ul>
+<p>We can utilise the sendevent functionality to track any TorQ process errors on datadog. TorQ provides a hook for extended logging, .lg.ext. We have provided the option to edit this to send errors and warnings to datadog as events:</p>
+<pre><code>enablelogging:{[]
+  .lg.ext:{[olddef;loglevel;proctype;proc;id;message;dict]
+  olddef[loglevel;proctype;proc;id;message;dict];
+  if[loglevel in `ERR`WARN;.dg.sendevent[string proc;message;string proctype;]$[loglevel=`ERR;&quot;error&quot;;&quot;warning&quot;]]}[@[value;`.lg.ext;{{[loglevel;proctype;proc;id;message;dict]}}]]
+ }
+</code></pre>
+<p>By default, this is not enabled, but should you wish to enable this and view process errors and warnings, you can change the value of .dg.enabled in <code>$TORQHOME/config/settings/default.q</code>.</p>
+<pre><code>.dg.enabled:1b
+</code></pre>
+<ul>
+<li>Automate checks using monitor process</li>
+</ul>
+<p>TorQ's <a href="http://dataintellecttech.github.io/TorQ/Processes/#monitor">monitor</a> process lets us define a series of user-specific checks to be run at specified intervals on specified processes. 
+We have provided an example check (<strong>.dg.isok</strong>) and (<strong>.dg.sendresultmetric</strong>). </p>
+<p>The .dg.isok function is a simple check to see if a process is available and can be queried. The monitor process will execute this function within the processes it has been configured to monitor, and a value of 1b is returned if the process is available. Within the monitor process, the .dg.sendresultmetric result handler then sends this result to datadog as a metric, which can be displayed on the UI dashboard. </p>
+<p>Other checks can be added to provide more specific metrics to monitor, such as table record counts, e.g: </p>
+<pre><code>.dg.checkcount:{[table;day] count select from table where date=day}
+</code></pre>
+<p>No default monitor configuration is provided, but if you wish to add a check such as the above to be run by the monitor process, the <code>monitorconfig.csv</code> can be edited as shown: </p>
+<pre><code>family|metric|process|query|resultchecker|params|period|runtime
+datadog|okcheck|rdb1;sort1;gateway1;hdb1;hdb2;wdb1;feed1|.dg.isok|.dg.sendresultmetric|`varname`cond!(`datadogcheck;`true)|0D00:01|0D00:00:00.5
+</code></pre>
+<h3 id="usage-guide_1">Usage Guide</h3>
+<p>If you wish to incorporate Datadog into your system as a monitoring tool, you can follow the instructions in the video above or the written instructions as follows. This will configure datadog according to default settings, and will not enable error logging or any monitoring functions unless configured by the user.  </p>
+<ol>
+<li>Install Datadog agent on your host according to instructions <a href="https://docs.datadoghq.com/getting_started/agent/?tab=datadogussite">here</a></li>
+<li>Set up required configuration on host:<ul>
+<li>(Optional) Change the port on which the agent listens, DOGSTATSD_PORT. This can be edited in the setenv.sh script in the $TORQHOME directory, and will default to port 8125.</li>
+<li>Execute <code>. setenv.sh</code> in the $TORHOME directory, to pick up any changes to DOGSTATSD_PORT</li>
+<li>Execute <code>. setupdatadog.sh</code>. This will edit the required datadog config files, datadog.yaml and process.yaml.</li>
+<li>Restart the datadog agent: <code>sudo service datadog-agent restart</code>. This ensures the updated config is used by the agent.</li>
+</ul>
+</li>
+</ol>
+<p>The agent is now reporting process stats, and these can be visualised on the datadog UI. For more detailed metrics and events, enable the error logging using <code>.dg.enabled:1b</code> and configure the monitor process to run some checks. </p>
+<h3 id="using-the-datadog-ui">Using the Datadog UI</h3>
+<p>You can visualise your metrics and events on a dashboard, and configure monitors and alerts. </p>
+<p>An example dashboard has been provided in <code>$TORQHOME/datadog/Example_TorQ_Monitoring_Dashboard.json.</code> This displays simple metrics such as process cpu %, process memory % and relative changes in these, as well as TorQ-specific process checks and a stream of any errors from TorQ processes. To import this into your datadog UI, go to the dashboards section <a href="https://app.datadoghq.com/dashboard/">here</a> And click <strong>add new screenboard</strong>. In the settings section, select <strong>import  dashboard json</strong> and copy and paste the json or browse your files to select the json dashboard you want to import. You will be prompted with whether or  not you want to replace whatever is on the screenboard - click yes. Your dashboard will then load and display as below. The appearance of the dashboard will depend on whether you've enabled the extended error logging, and configured the monitor process. </p>
+<p><img alt="Example Dashboard" src="../graphics/datadog2.png" /></p>
+<p>Alternatively, you can create your own custom dashboard according to the documentation <a href="https://docs.datadoghq.com/dashboards/">here</a></p>
+<p><strong>Monitors</strong> can be set up to track metrics and establish alerts based on critical changes. We've provided some example monitors, designed to notify if a process goes down, or system resources reach a limit. To import an example monitor, go to the "Monitors" section on your datadog account, click <strong>New Monitor</strong>, then <strong>Import Monitor</strong>, and copy and paste the JSON of the monitor you'd like to use into the text box provided, then click save. The monitor will then become available and start alerting.</p>
+<p>You can create custom monitors using the guidelines in the Datadog documentation
+<a href="https://docs.datadoghq.com/monitors/monitor_types/">here</a></p>
+<h3 id="monitoring-multiple-hosts">Monitoring Multiple Hosts</h3>
+<p>Depending on your datadog pricing plan, the option to monitor multiple hosts is provided. To integrate Datadog and TorQ across all hosts, you will need to install the agent on each host, and follow the installation instructions as above. If your TorQ setup is operating across different hosts, you will need to establish which processes to monitor on which host by configuring a "datadog" column in the process.csv as discussed earlier.</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy 2020 Data Intellect Limited.  Kx &reg and kdb+ are registered trademarks of Kx Systems Inc.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/DataIntellectTech" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/data_intellect" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/company/data-intellect-challenge-accepted" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["search.suggest", "search.highlight"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      
+    
+  </body>
+</html>

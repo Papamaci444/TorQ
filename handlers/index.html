@@ -1,0 +1,1632 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../utilities/">
+      
+      
+        <link rel="next" href="../conn/">
+      
+      
+      <link rel="icon" href="../graphics/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.27">
+    
+    
+      
+        <title>Handlers - TorQ</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","UA-51911331-4"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","UA-51911331-4",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=UA-51911331-4",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="grey">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#message-handlers" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="TorQ" class="md-header__button md-logo" aria-label="TorQ" data-md-component="logo">
+      
+  <img src="../graphics/DataIntellect-header-logo.jpg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            TorQ
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Handlers
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="grey"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DataIntellectTech/TorQ" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="TorQ" class="md-nav__button md-logo" aria-label="TorQ" data-md-component="logo">
+      
+  <img src="../graphics/DataIntellect-header-logo.jpg" alt="logo">
+
+    </a>
+    TorQ
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DataIntellectTech/TorQ" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cheatsheet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cheat Sheat
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gettingstarted/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../InstallGuide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../utilities/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Utilities
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Handlers
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Handlers
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dotzq" class="md-nav__link">
+    <span class="md-ellipsis">
+      dotz.q
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logusageq" class="md-nav__link">
+    <span class="md-ellipsis">
+      logusage.q
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#controlaccessq" class="md-nav__link">
+    <span class="md-ellipsis">
+      controlaccess.q
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trackclientsq" class="md-nav__link">
+    <span class="md-ellipsis">
+      trackclients.q
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trackserversq" class="md-nav__link">
+    <span class="md-ellipsis">
+      trackservers.q
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zpsignoreq" class="md-nav__link">
+    <span class="md-ellipsis">
+      zpsignore.q
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#writeaccessq" class="md-nav__link">
+    <span class="md-ellipsis">
+      writeaccess.q
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#permissionsq" class="md-nav__link">
+    <span class="md-ellipsis">
+      permissions.q
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="permissions.q">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage Example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gateway-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gateway Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ldapq" class="md-nav__link">
+    <span class="md-ellipsis">
+      ldap.q
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diagnostic-reporting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagnostic Reporting
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../conn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Connection Management
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Processes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Processes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../analyticslib/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Analytics Library
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dataaccess/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Data Access Library
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../monit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Monitoring
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../visualisation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Visualisation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unittesting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Testing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../blog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TorQ Blog Posts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dotzq" class="md-nav__link">
+    <span class="md-ellipsis">
+      dotz.q
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logusageq" class="md-nav__link">
+    <span class="md-ellipsis">
+      logusage.q
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#controlaccessq" class="md-nav__link">
+    <span class="md-ellipsis">
+      controlaccess.q
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trackclientsq" class="md-nav__link">
+    <span class="md-ellipsis">
+      trackclients.q
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trackserversq" class="md-nav__link">
+    <span class="md-ellipsis">
+      trackservers.q
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zpsignoreq" class="md-nav__link">
+    <span class="md-ellipsis">
+      zpsignore.q
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#writeaccessq" class="md-nav__link">
+    <span class="md-ellipsis">
+      writeaccess.q
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#permissionsq" class="md-nav__link">
+    <span class="md-ellipsis">
+      permissions.q
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="permissions.q">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage Example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gateway-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gateway Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ldapq" class="md-nav__link">
+    <span class="md-ellipsis">
+      ldap.q
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diagnostic-reporting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagnostic Reporting
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="message-handlers">Message Handlers</h1>
+<p>There is a separate code directory containing message handler
+customizations. This is found at $KDBCODE/handlers. Much of the code is
+derived from Simon Garland’s contributions to
+<a href="http://code.kx.com/wiki/Contrib/UsingDotz">code.kx</a>.</p>
+<p>Every external interaction with a process goes through a message
+handler, and these can be modified to, for example, log or restrict
+access. Passing through a bespoke function defined in a message handler
+will add extra processing time and therefore latency to the message. All
+the customizations we have provided aim to minimise additional latency,
+but if a bespoke process is latency sensitive then some or all of the
+customizations could be switched off. We would argue though that
+generally it is better to switch on all the message handler functions
+which provide diagnostic information, as for most non-latency sensitive
+processes (HDBs, Gateways, some RDBs etc.) the extra information upon
+failure is worth the cost. The message handlers can be globally switched
+off by setting .proc.loadhandlers to 0b in the configuration file.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Script</th>
+<th style="text-align: center;">NS</th>
+<th style="text-align: center;">Diag</th>
+<th style="text-align: center;">Function</th>
+<th style="text-align: center;">Modifies</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">logusage.q</td>
+<td style="text-align: center;">.usage</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">Log all client interaction to an ascii log file and/or in-memory table. Messages can be logged before and after they are processed. Timer calls are also logged. Exclusion function list can be applied to .z.ps to disable logging of asynchronous real time updates</td>
+<td style="text-align: center;">pw, po, pg, ps, pc, ws, ph, pp, pi, exit, timer</td>
+</tr>
+<tr>
+<td style="text-align: center;">controlaccess.q</td>
+<td style="text-align: center;">.access</td>
+<td style="text-align: center;">N</td>
+<td style="text-align: center;">Restrict access for set of users/user groups to a list of functions, and from a defined set of servers</td>
+<td style="text-align: center;">pw, pg, ps, ws, ph, pp, pi</td>
+</tr>
+<tr>
+<td style="text-align: center;">trackclients.q</td>
+<td style="text-align: center;">.clients</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">Track client process details including then number of requests and cumulative data size returned</td>
+<td style="text-align: center;">po, pg, ps, ws, pc</td>
+</tr>
+<tr>
+<td style="text-align: center;">trackservers.q</td>
+<td style="text-align: center;">.servers</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">Discover and track server processes including name, type and attribute information. This also contains the core of the code which can be used in conjunction with the discovery service.</td>
+<td style="text-align: center;">pc, timer</td>
+</tr>
+<tr>
+<td style="text-align: center;">zpsignore.q</td>
+<td style="text-align: center;">.zpsignore</td>
+<td style="text-align: center;">N</td>
+<td style="text-align: center;">Override async message handler based on certain message patterns</td>
+<td style="text-align: center;">ps</td>
+</tr>
+<tr>
+<td style="text-align: center;">writeaccess.q</td>
+<td style="text-align: center;">.readonly</td>
+<td style="text-align: center;">N</td>
+<td style="text-align: center;">Restrict client write access to prevent any modification to data in place. Also disables all HTTP access.</td>
+<td style="text-align: center;">pg, ps, ws, ph, pp</td>
+</tr>
+<tr>
+<td style="text-align: center;">ldap.q</td>
+<td style="text-align: center;">.ldap</td>
+<td style="text-align: center;">N</td>
+<td style="text-align: center;">Restrict client access to process using ldap authentication.</td>
+<td style="text-align: center;">pw</td>
+</tr>
+</tbody>
+</table>
+<p>Each customization can be turned on or off individually from the
+configuration file(s). Each script can be extensively customised using
+the configuration file. Example customization for logusage.q, taken from
+$KDBCONFIG/settings/default.q is below. Please see default.q for the
+remaining configuration of the other message handler files.</p>
+<pre><code>/- Configuration used by the usage functions - logging of client interaction
+\d .usage
+enabled:1b      /- whether the usage logging is enabled
+logtodisk:1b        /- whether to log to disk or not
+logtomemory:1b      /- write query logs to memory
+ignore:1b       /- check the ignore list for functions to ignore
+ignorelist:(`upd;"upd") /- the list of functions to ignore in async calls
+flushtime:1D00      /- default value for how long to persist the
+            /- in-memory logs. Set to 0D for no flushing
+suppressalias:0b    /- whether to suppress the log file alias creation
+logtimestamp:{[].z.d}   /- function to generate the log file timestamp suffix
+LEVEL:3         /- log level. 0=none;1=errors;2=errors+complete
+            /- queries;3=errors+before a query+after
+logroll:1b      /- Whether or not to roll the log file
+            /- automatically (on a daily schedule)
+</code></pre>
+<h2 id="dotzq">dotz.q</h2>
+<p>Stores all the default values for the message handlers and can be used to revert back to the default if necessary.</p>
+<p><a name="logu"></a></p>
+<h2 id="logusageq">logusage.q</h2>
+<p>logusage.q is probably the most important of the scripts from a
+diagnostic perspective. It is a modified version of the logusage.q
+script on code.kx.</p>
+<p>In its most verbose mode it will log information to an in-memory table
+(.usage.usage) and an on-disk ASCII file, both before and after every
+client interaction and function executed on the timer. These choices
+were made because:</p>
+<ul>
+<li>
+<p>logging to memory enables easy interrogation of client interaction;</p>
+</li>
+<li>
+<p>logging to disk allows persistence if the process fails or locks up.
+      ASCII text files allow interrogation using OS tools such as vi, grep
+      or tail;</p>
+</li>
+<li>
+<p>logging before a query ensures any query that adversely effects the
+      process is definitely captured, as well as capturing some state
+      information before the query execution;</p>
+</li>
+<li>
+<p>logging after a query captures the time taken, result set size and
+      resulting state;</p>
+</li>
+<li>
+<p>logging timer calls ensures a full history of what the process is
+      actually doing. Also, timer call performance degradation over time
+      is a common source of problems in kdb+ systems.</p>
+</li>
+</ul>
+<p>The following fields are logged in .usage.usage:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Field</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">time</td>
+<td style="text-align: center;">Time the row was added to the table</td>
+</tr>
+<tr>
+<td style="text-align: center;">id</td>
+<td style="text-align: center;">ID of the query. Normally before and complete rows will be consecutive but it might not be the case if the incoming call invokes further external communication</td>
+</tr>
+<tr>
+<td style="text-align: center;">timer</td>
+<td style="text-align: center;">Execution time. Null for rows with status=b (before)</td>
+</tr>
+<tr>
+<td style="text-align: center;">zcmd</td>
+<td style="text-align: center;">.z handler the query arrived through</td>
+</tr>
+<tr>
+<td style="text-align: center;">status</td>
+<td style="text-align: center;">Query status. One of b, c or e (before, complete, error)</td>
+</tr>
+<tr>
+<td style="text-align: center;">a</td>
+<td style="text-align: center;">Address of sender. .dotz.ipa can be used to convert from the integer format to a hostname</td>
+</tr>
+<tr>
+<td style="text-align: center;">u</td>
+<td style="text-align: center;">Username of sender</td>
+</tr>
+<tr>
+<td style="text-align: center;">w</td>
+<td style="text-align: center;">Handle of sender</td>
+</tr>
+<tr>
+<td style="text-align: center;">cmd</td>
+<td style="text-align: center;">Command sent</td>
+</tr>
+<tr>
+<td style="text-align: center;">mem</td>
+<td style="text-align: center;">Memory statistics</td>
+</tr>
+<tr>
+<td style="text-align: center;">sz</td>
+<td style="text-align: center;">Size of result. Null for rows with status of b or e</td>
+</tr>
+<tr>
+<td style="text-align: center;">error</td>
+<td style="text-align: center;">Error message</td>
+</tr>
+</tbody>
+</table>
+<p><a name="control"></a></p>
+<h2 id="controlaccessq">controlaccess.q</h2>
+<p>controlaccess.q is used to restrict client access to the process. It is
+modified version of controlaccess.q from code.kx. The script allows
+control of several aspects:</p>
+<ul>
+<li>
+<p>the host/ip address of the servers which are allowed to access the
+    process;</p>
+</li>
+<li>
+<p>definition of three user groups (default, poweruser and superuser)
+      and the actions each group is allowed to do;</p>
+</li>
+<li>
+<p>the group(s) each user is a member of, and any additional actions an
+      individual user is allowed/disallowed outside of the group
+      permissions;</p>
+</li>
+<li>
+<p>the maximum size of the result set returned to a client.</p>
+</li>
+</ul>
+<p>The access restrictions are loaded from csv files. The permissions files
+are stored in $KDBCONFIG/permissions.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">*_hosts.csv</td>
+<td style="text-align: center;">Contains hostname and ip address (patterns) for servers which are allowed or disallowed access. If a server is not found in the list, it is disallowed</td>
+</tr>
+<tr>
+<td style="text-align: center;">*_users.csv</td>
+<td style="text-align: center;">Contains individual users and the user groups they are are a member of</td>
+</tr>
+<tr>
+<td style="text-align: center;">*_functions.csv</td>
+<td style="text-align: center;">Contains individual functions and whether each user group is allowed to execute them. ; separated user list enables functions to be allowed by individual users</td>
+</tr>
+</tbody>
+</table>
+<p>The permissions files are loaded using a similar hierarchical approach
+as for the configuration and code loading. Three files can be provided-
+default_.csv, [proctype]_.csv, and [procname]_.csv. All of the
+files will be loaded, but permissions for the same entity (hostpattern,
+user, or function) defined in [procname]_.csv will override those in
+[proctype]_.csv which will in turn override [procname]_.csv.</p>
+<p>When a client makes a query which is refused by the permissioning layer,
+an error will be raised and logged in .usage.usage if it is enabled.</p>
+<p><a name="track"></a></p>
+<h2 id="trackclientsq">trackclients.q</h2>
+<p>trackclients.q is used to track client interaction. It is a slightly
+modified version of trackclients.q from code.kx, and extends the
+functionality to handle interaction with the discovery service.</p>
+<p>Whenever a client opens a connection to the q process, it will be
+registered in the .clients.clients table. Various details are logged,
+but from a diagnostic perspective the most important information are the
+client details, the number of queries it has run, the last time it ran a
+query, the number of failed queries and the cumulative size of results
+returned to it.</p>
+<p><a name="tracks"></a></p>
+<h2 id="trackserversq">trackservers.q</h2>
+<p>trackservers.q is used to register and maintain handles to external
+servers. It is a heavily modified version of trackservers.q from
+code.kx. It is explained more in the Connection Management section.</p>
+<p><a name="zps"></a></p>
+<h2 id="zpsignoreq">zpsignore.q</h2>
+<p>zpsignore.q is used to check incoming async calls for certain patterns
+and to bypass all further message handler checks for messages matching
+the pattern. This is useful for handling update messages published to a
+process from a data source.</p>
+<p><a name="write"></a></p>
+<h2 id="writeaccessq">writeaccess.q</h2>
+<p>writeaccess.q is used to restrict client write access to data within a
+process. The script uses the reval function, released in KDB+ 3.3, to
+prevent client queries from modifying any data in place. At present only
+queries in the form of strings are passed through the reval function.
+Additionally the script disables any form of HTTP access. If using
+versions of KDB+ prior to 3.3, this feature must be disabled. An attempt
+to use this feature on previous KDB+ versions will result in an error
+and the relevant process exiting.</p>
+<h2 id="permissionsq">permissions.q</h2>
+<p>permissions.q is used to control client access to a server process. It
+allows:</p>
+<ul>
+<li>
+<p>Access control via username/password access, either in combination
+    with the -u/U process flags or in place of them.</p>
+</li>
+<li>
+<p>Definition of user groups, which control variable access.</p>
+</li>
+<li>
+<p>Definition of user roles, which allow control over function
+    execution.</p>
+</li>
+<li>
+<p>Deeper control over table subsetting through the use of “virtual
+    tables”, using enforced where clauses.</p>
+</li>
+</ul>
+<p>Access restriction in TorQ can be enabled on all processes, each of
+which can then load the default.q in $KDBCONFIG/permissions/, which
+adds users, groups and roles allowing standard operation of TorQ. The
+admin user and role by default can access all functions, and each of the
+system processes has access only to the required system functions.</p>
+<p>Permissions are enabled or disabled on a per-process basis through
+setting .pm.enabled as 1b or 0b at process load (set to 0b by default).
+A permissioned process can safely interact with a non-permissioned
+process while still controlling access to itself.</p>
+<p>The access schema consists of 7 control tables:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Name</strong></th>
+<th><strong>Descriptions</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>user</td>
+<td>Username, locality, encryption type and password hash</td>
+</tr>
+<tr>
+<td>usergroup</td>
+<td>User and their group.</td>
+</tr>
+<tr>
+<td>userrole</td>
+<td>User and role.</td>
+</tr>
+<tr>
+<td>functiongroup</td>
+<td>Functions and their group</td>
+</tr>
+<tr>
+<td>function</td>
+<td>Function names, the roles which can access them, and a lambda checking the parameters those roles can use.</td>
+</tr>
+<tr>
+<td>access</td>
+<td>Variable names, the groups which can access them, and the read or write access level.</td>
+</tr>
+<tr>
+<td>virtualtable</td>
+<td>Virtual table name, main table name, and the where clause it enforces on access to that table.</td>
+</tr>
+</tbody>
+</table>
+<p>In addition to groupinfo and roleinfo tables, which contain the
+group/role name and a string describing each group and role. A user can
+belong to multiple groups, and have multiple roles. In particular the
+schema supports group hierarchy, where a user group can be listed as a
+user in the group table, and inherit all the permissions from another
+other group, effectively inheriting the second group itself. Note that
+a group cannot have the same name as an individual user.</p>
+<p>A user belonging to a group listed in the access table will have the
+specified level of access (read or write) to that group’s variables,
+e.g.</p>
+<table>
+<thead>
+<tr>
+<th>Table</th>
+<th>Group</th>
+<th>Level</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>quote</td>
+<td>headtrader</td>
+<td>write</td>
+</tr>
+<tr>
+<td>trade</td>
+<td>juniortrader</td>
+<td>read</td>
+</tr>
+</tbody>
+</table>
+<p>Here, users in headtrader will have write access to the quote table,
+while juniortrader group has read access to the trade table. If
+headtraders have been set to inherit the juniortrader group, they will
+also have read access to trade. Note that read access is distinct from
+write access. Headtraders in this circumstance do not have implicit read
+access to the quote table. This control is for direct name access only.
+Selects, execs and updates are controlled via the function table, as
+below.</p>
+<p>The permissions script can be set to have permissive mode enabled with
+permissivemode:1b (disabled by default). When enabled at script loading,
+this bypasses access checks on variables which are not listed in the
+access table, effectively auto-allowlisting any variables not listed in
+the access table for all users, which may be useful in partly restricted
+development environments.</p>
+<p>Function access is controlled through non-hierarchical roles. A user
+attempting to run a named function will have their access checked
+against the function table through their role, for example, trying to
+run a function timedata[syms;bkttype], which selects from a table by a
+time bucket type bkttype on xbar:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Function</strong></th>
+<th><strong>Role</strong></th>
+<th><strong>Param. Check</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>timedata</td>
+<td>quant</td>
+<td>{1b}</td>
+</tr>
+<tr>
+<td>timedata</td>
+<td>normal user</td>
+<td>{x[`bkttype] in `hh}</td>
+</tr>
+<tr>
+<td>select</td>
+<td>quant</td>
+<td>{1b}</td>
+</tr>
+</tbody>
+</table>
+<p>The parameter check in the third column must be a lambda accepting a
+dictionary of parameters and their values, which can then return a
+boolean if some parameter condition is met. Here, any normal user must
+have their bucket type as an hour. If they try anything else, the
+function is not permitted. This could be extended to restriction to
+certain syms as well, in this example, the quant can run this function
+with any parameters. Anything passed to the param. check function
+returns 1b. A quant having general select access is listed as having
+1b in the param. check.</p>
+<p>Further restriction of data can be achieved with virtual tables, via
+which users can be restricted to having a certain subset of data from a
+main table available. To avoid the need to replicate a potentially large
+subset of a table into a separately-controlled variable, this is done
+through pointing to the table under a different name via a where clause,
+e.g.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Virtual Table</strong></th>
+<th><strong>Table</strong></th>
+<th><strong>Where Clause</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>trade_lse</td>
+<td>trade</td>
+<td>,(in;`src;“L”)</td>
+</tr>
+<tr>
+<td>quote_new</td>
+<td>quote</td>
+<td>,(&gt;;`time;(-;`.z.p;01:00))</td>
+</tr>
+</tbody>
+</table>
+<p>When a select from trade_lse is performed, a select on trade is
+modified to contain the where clause above. Access to virtual tables can
+be controlled identically to access to real tables through the access
+table.</p>
+<p>If the process is given the flag “-public 1”, it will run in public
+access mode. This allows a user to log in without a password and be
+given the publicuser role and membership of the public group, which can
+be configured as any other group or role.</p>
+<p>The permissions control has a default size restriction of 2GB, set (as
+bytes) on .pm.maxsize. This is a global restriction and is not affected
+by user permissions.</p>
+<p>Adding to the groups and roles is handled by the functions:</p>
+<pre><code>adduser[`user;`locality;`hash type; md5"password"]
+removeuser[`user]
+addgroup[`groupname; "description"]
+removegroup[`groupname]
+addrole[`rolename; "description"]
+removerole[`rolename]
+addtogroup[`user;`groupname]
+removefromgroup[`user; `groupname]
+assignrole[`user; `rolename]
+unassignrole[`user; `rolename]
+addfunction[`function; `functiongroup]
+removefunction[`function; `functiongroup]
+grantaccess[`variable; `groupname; `level]
+revokeaccess[`variable; `groupname; `level]
+grantfunction[`function; `rolename; {paramCheckFn}]
+revokefunction[`function; `rolename]
+createvirtualtable[`vtablename; `table; ,(whereclause)]
+removevirtualtable[`vtablename]
+cloneuser[`user;`newuser;"password"]
+</code></pre>
+<p>which are further explained in the script API.</p>
+<p>Permission control operates identically on the gateway. A user connected
+to the gateway must have access to the gateway, and their roles must
+have access to the .gw.syncexec or .gw.asyncexec functions.</p>
+<h3 id="usage-example">Usage Example</h3>
+<p>To connect to a permissioned RDB in the TorQ system, a group and role
+for the user must be established. If the RDB contains the tables trade,
+quote, and depth, and the process contains the functions getdata[syms,
+bkttype,bktsize] and hloc[table], restricted access would be
+configured like so:</p>
+<pre><code>.pm.adduser[`adam;`local;`md5;md5"pass"]
+.pm.adduser[`bob;`local;`md5;md5"pass"]
+
+.pm.addtogroup[`adam;`fulluser]
+.pm.addtogroup[`bob;`partuser]
+.pm.addtogroup[`fulluser;`partuser]
+.pm.grantaccess[`quote;`fulluser;`read]
+.pm.grantaccess[`trade;`partuser;`read]
+
+.pm.createvirtualtable[`quotenew;`quote;enlist(&gt;;`time;(-;`.z.p;01:00))]
+.pm.grantaccess[`quotenew;`partuser;`read]
+
+.pm.assignrole[`adam;`toplevel]
+.pm.assignrole[`bob;`lowlevel]
+.pm.grantfunction[`getdata;`toplevel;{1b}]
+.pm.grantfunction[`getdata;`lowlevel;{x[`syms] in `GOOG}]
+.pm.grantfunction[`hloc;`toplevel;{1b}]
+.pm.grantfunction[`hloc;`lowlevel;{x[`table] in `trade}]
+</code></pre>
+<p>This provides a system in which Bob can access only the trade table,
+while Adam has access to the trade table and quote table (through
+inheritance from Bob’s group). Through a virtual table, if Bob runs
+“select from quotenew”, he is able to get a table of the last hour of
+quotes. When the system is started in normal mode, there is no IPC
+access to the depth table, however if the system was started in
+permissive mode, in this case any user who could log in could access
+depth.</p>
+<p>Adam can run the getdata function however he wants, and Bob can only run
+it against sym GOOG. Similarly Adam can run hloc against any table, but
+Bob can only look at trade with it.</p>
+<p>Additionally, any system calls would need to be actively permissioned in
+the same way, after defining a systemuser role (or expanding the default
+role in TorQ). The superuser is given global function access by
+assigning them .pm.ALL in the function table, for example a tickerplant
+pushing to the RDB would need to have a user and role defined:</p>
+<pre><code>.pm.adduser[`ticker;`local;`md5;md5"plant"]
+.pm.assignrole[`ticker;`tp]
+</code></pre>
+<p>And then grant that role access to the .u.upd function:</p>
+<pre><code>.pm.grantfunction[`.u.upd;`tp;{1b}]
+</code></pre>
+<p>Although the .u.upd function updates to a table, there is no need to
+grant direct access to that table.</p>
+<h3 id="gateway-example">Gateway Example</h3>
+<p>The gateway user will have superuser role by default. The execution of a
+function passed through the gateway is checked against the user who sent
+the call. This should not be modified.</p>
+<p>Within the gateway itself, access to target processes can be controlled
+via the function table. For example, if Adam in the previous example was
+allowed to access only the RDB with .gw.syncexec, you could use:</p>
+<pre><code>.pm.grantfunction[`.gw.syncexec;`toplevel;{x[`1] in `rdb}]
+</code></pre>
+<p>Since .gw.syncexec is a projection, the arguments supplied are checked
+in order, with dictionary keys `0`1`2... etc. This could be further
+extended to restrict access to queries with the
+.pm.allowed[user;query] function, which checks permissions of the
+current user as listed on the gateway permission tables:</p>
+<pre><code>.pm.grantfunction[`.gw.syncexec;`toplevel;
+    {.pm.allowed[.z.u;x[`0]] and x[`1] in `rdb}]
+</code></pre>
+<p><a name="ldap"></a></p>
+<h2 id="ldapq">ldap.q</h2>
+<p>Authentication with an ldap server is managed with ldap.q. It allows:</p>
+<ul>
+<li>
+<p>A user to authenticate against an ldap server;</p>
+</li>
+<li>
+<p>Caching of user attempts to allow reauthentication without server if within checktime period;</p>
+</li>
+<li>
+<p>Users to be blocked if too many failed authentication attempts are made.</p>
+</li>
+</ul>
+<p>Default parameters in the ldap namespace are set in {TORQHOME}/config/settings/default.q.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">parameter</th>
+<th style="text-align: center;">description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">enabled</td>
+<td style="text-align: center;">Whether ldap authentication is enabled</td>
+</tr>
+<tr>
+<td style="text-align: center;">debug</td>
+<td style="text-align: center;">Whether logging message are written to console</td>
+</tr>
+<tr>
+<td style="text-align: center;">servers</td>
+<td style="text-align: center;"><code>&lt;schema&gt;://&lt;host&gt;:&lt;port&gt;</code> address(es) of server(s) to connect to</td>
+</tr>
+<tr>
+<td style="text-align: center;">version</td>
+<td style="text-align: center;">Ldap version number.</td>
+</tr>
+<tr>
+<td style="text-align: center;">blocktime</td>
+<td style="text-align: center;">Time that must elapse before a blocked user can attempt to authenticate. If set to 0Np then the user is permanently blocked until an admin unblocks them.</td>
+</tr>
+<tr>
+<td style="text-align: center;">checklimit</td>
+<td style="text-align: center;">Login attempts before user is blocked.</td>
+</tr>
+<tr>
+<td style="text-align: center;">checktime</td>
+<td style="text-align: center;">Period of time that allows user to reauthenticate without confirming with ldap server.</td>
+</tr>
+<tr>
+<td style="text-align: center;">buildDNsuf</td>
+<td style="text-align: center;">Suffix for building distinguished name.</td>
+</tr>
+<tr>
+<td style="text-align: center;">buildDN</td>
+<td style="text-align: center;">Function to build distiniguished name.</td>
+</tr>
+</tbody>
+</table>
+<p>To get started the following will need altered from their default values: enabled, servers, buildDNsuf.</p>
+<p>The value buildDNsuf is required to build a users bind_dn from the supplied username and is called by the function buildDN. An example definition is:</p>
+<pre><code>.ldap.buildDNsuf:"ou=users,dc=website,dc=com";
+</code></pre>
+<p>Authentication is handled by .ldap.authenticate which is wrapped by .ldap.login, which is in turn wrapped by .z.pw when ldap authentication is enabled. When invoked .ldap.login retrieves the users latest authentication attempt from the cache, if it exists, and performs several checks before authenticating the user.</p>
+<p>To authenticate the function first checks whether the user has been blocked by reaching the checklimit and blocktime has not passed, immediately returning false if this is the case. If the user has previously successfully authenticated within the period defined by checktime and is using the same credentials authentication will be permitted. For all other cases an authentication attempt will be made against the ldap server. </p>
+<p>Example authentication attempt:</p>
+<pre><code>.ldap.login[`user;pass]
+0b
+</code></pre>
+<p>To manually unblock a user the function .ldap.unblock must be passed their userame as a symbol. The function checks the cache to see whether a user is blocked and will reset the blocked status if necessary. An example usage of this function is:</p>
+<pre><code>.ldap.unblock[`user]
+</code></pre>
+<p><a name="dia"></a></p>
+<h2 id="diagnostic-reporting">Diagnostic Reporting</h2>
+<p>The message handler modifications provide a wealth of diagnostic
+information including:</p>
+<ul>
+<li>
+<p>the timings and memory usage for every query run on a process;</p>
+</li>
+<li>
+<p>failed queries;</p>
+</li>
+<li>
+<p>clients trying to do things they are not permissioned for;</p>
+</li>
+<li>
+<p>the clients which are querying often and/or regularly extracting
+      large datasets;</p>
+</li>
+<li>
+<p>the number of clients currently connected;</p>
+</li>
+<li>
+<p>timer calls and how long they take.</p>
+</li>
+</ul>
+<p>Although not currently implemented, it would be straightforward to use
+this information to implement reports on the behaviour of each process
+and the overall health of the system. Similarly it would be
+straightforward to set up periodic publication to a central repository
+to have a single point for system diagnostic statistics.</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy 2020 Data Intellect Limited.  Kx &reg and kdb+ are registered trademarks of Kx Systems Inc.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/DataIntellectTech" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/data_intellect" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/company/data-intellect-challenge-accepted" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["search.suggest", "search.highlight"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      
+    
+  </body>
+</html>
